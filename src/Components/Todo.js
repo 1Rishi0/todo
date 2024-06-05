@@ -27,7 +27,7 @@ const Todo = ()=>{
         <div className="container">
             <h1>Todo List</h1>
             <div className="input-container">
-                <input type="text" placeholder="Enter text" className="task-input" ref={taskInputRef}/>
+                <input type="text" placeholder="TASKS" className="task-input" ref={taskInputRef}/>
                 <button className="add-button" onClick={addTask}>
                     ADD
                 </button>

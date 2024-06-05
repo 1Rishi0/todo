@@ -31,6 +31,7 @@ const SignUp = ()=>{
             <h1>SIGN UP</h1>
             <div id="inputs" className="inputs">
                 <input placeholder="Name" className="nameInput" ref={nameRef}/>
+                <input type="email" placeholder="Email" className="emailInput" />
                 <input placeholder="Password" className="passwordInput" ref={passwordRef}/>
             </div>
             <div className="buttons">
