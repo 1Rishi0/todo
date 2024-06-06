@@ -1,10 +1,16 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import './Todo.css';
+import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import { setUser } from "./loginReducer";
 
 const Todo = ()=>{
 
+    const username = useSelector((state)=> state.login.user);
+
     const [tasks , setTasks] = useState([]);
     const taskInputRef = useRef(null);
+    
     const addTask = (event)=>{
         event.preventDefault();
         const taskText = taskInputRef.current.value.trim();
@@ -23,6 +29,34 @@ const Todo = ()=>{
         })
     }
 
+    const saveTasks = async()=>{
+        try{
+            await axios.post("http://localhost:4000/addTask", {
+                username,
+                tasks,
+            });
+            console.log("Task saved successfullly");
+        }
+        catch(error){
+            console.error("Error in saving the file");
+        }   
+    }
+
+    useEffect (() => {
+        const fetchTasks = async () => {
+            try{
+                console.log(username);
+                const response = await axios.post('http://localhost:4000/getTasks', {username});
+                console.log("Response is", response); 
+                setTasks (response.data);
+            }
+            catch (error) {
+                console.error("Error fetching tasks:", error);
+            }
+        };
+        fetchTasks();
+        }, [username]);
+
     return(
         <div className="container">
             <h1>Todo List</h1>
@@ -40,6 +74,9 @@ const Todo = ()=>{
                     </li>
                 ))}
             </ul>
+            <div >
+                <button className="uploadbtn" onClick={saveTasks}>SAVE</button>
+            </div>
         </div>
     )
 }

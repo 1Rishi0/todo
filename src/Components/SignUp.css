@@ -6,7 +6,7 @@ body, html {
     align-items: center;
     justify-content: center;
     background-color: #f0f0f0;
-    background: url('/public/SignupBG.png') no-repeat center center fixed  ;
+    background: url('/public/todoBG.jpg') no-repeat center center fixed  ;
     background-size: cover;
     font-family: Arial, sans-serif;
 }
