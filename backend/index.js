@@ -5,7 +5,9 @@ import cors from 'cors';
 const app = express();
 const port =4000;
 
-const uri = "mongodb+srv://msrishi:Rishitha20!@cluster0.tv3cy.mongodb.net/";
+// const uri = "mongodb+srv://msrishi:Rishitha20!@cluster0.tv3cy.mongodb.net/";
+
+const uri = "mongodb+srv://msrishitha:Rishitha20!@cluster0.2ylum.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
 mongoose.connect(uri, {
     useNewUrlParser: true,
@@ -105,7 +107,7 @@ app.post("/addTask", async(req,res)=>{
 
 app.post('/getTasks' , async(req,res)=>{
     try{
-        const username = req.body;
+        const {username} = req.body;
         const user = await Task.findOne({username: username});
         console.log("User is ", user);
         if(!user){
